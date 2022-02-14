@@ -26,7 +26,6 @@ export const formValidationSchema = yup.object({
 export function Login() {
   const theme = createTheme();
   const history = useHistory();
-  
 
   const { handleSubmit, handleChange, values, handleBlur, errors, touched } =
     useFormik({
@@ -40,16 +39,19 @@ export function Login() {
     });
 
   const checkCredentials = async (values) => {
-    const response = await fetch(`https://forgot-password-by-vrushabh.herokuapp.com/login`, {
-      method: "POST",
-      body: JSON.stringify({
-        email: values.email,
-        password: values.password,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `https://forgot-password-by-vrushabh.herokuapp.com/login`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          email: values.email,
+          password: values.password,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const json = await response.json();
     // console.log(json);
     if (json.success) {
@@ -61,83 +63,89 @@ export function Login() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Typography component="h1" variant="h5">
-            Login
-          </Typography>
-          <Box sx={{ mt: 3 }}>
-            <form onSubmit={handleSubmit}>
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
-                  <TextField
-                    id="email"
-                    name="email"
-                    fullWidth
-                    value={values.email}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    label="Email"
-                    type="email"
-                    error={errors.email && touched.email}
-                    helperText={errors.email && touched.email && errors.email}
-                  />
+    <div>
+      <div className="demo">
+        <h3>Demo Credentials</h3>
+        <h5>Email: vrushabhmungelwar10@gmail.com</h5>
+        <h5>Password: vrushabh</h5>
+      </div>
+      <ThemeProvider theme={theme}>
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <Box
+            sx={{
+              marginTop: 8,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <Typography component="h1" variant="h5">
+              Login
+            </Typography>
+            <Box sx={{ mt: 3 }}>
+              <form onSubmit={handleSubmit}>
+                <Grid container spacing={2}>
+                  <Grid item xs={12}>
+                    <TextField
+                      id="email"
+                      name="email"
+                      fullWidth
+                      value={values.email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      label="Email"
+                      type="email"
+                      error={errors.email && touched.email}
+                      helperText={errors.email && touched.email && errors.email}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      id="password"
+                      name="password"
+                      fullWidth
+                      value={values.password}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      label="Password"
+                      type="password"
+                      error={errors.password && touched.password}
+                      helperText={
+                        errors.password && touched.password && errors.password
+                      }
+                    />
+                  </Grid>
                 </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    id="password"
-                    name="password"
-                    fullWidth
-                    value={values.password}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    label="Password"
-                    type="password"
-                    error={errors.password && touched.password}
-                    helperText={
-                      errors.password && touched.password && errors.password
-                    }
-                  />
-                </Grid>
-              </Grid>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Login
-              </Button>
-              <Link
-                component="button"
-                variant="body2"
-                sx={{mr:26}}
-                onClick={() => history.push("/signUp")}
-              >
-                Signup
-              </Link>
-              <Link
-                component="button"
-                variant="body2"
-                sx={{ml:0}}
-                onClick={() => history.push("/forgotpassword")}
-              >
-                Forgot Password
-              </Link>
-
-            </form>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Login
+                </Button>
+                <Link
+                  component="button"
+                  variant="body2"
+                  sx={{ mr: 26 }}
+                  onClick={() => history.push("/signUp")}
+                >
+                  Signup
+                </Link>
+                <Link
+                  component="button"
+                  variant="body2"
+                  sx={{ ml: 0 }}
+                  onClick={() => history.push("/forgotpassword")}
+                >
+                  Forgot Password
+                </Link>
+              </form>
+            </Box>
           </Box>
-        </Box>
-      </Container>
-    </ThemeProvider>
+        </Container>
+      </ThemeProvider>
+    </div>
   );
 }
