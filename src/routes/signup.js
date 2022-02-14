@@ -31,7 +31,6 @@ export function SignUp() {
   const theme = createTheme();
   const history = useHistory();
 
-
   const { handleSubmit, handleChange, values, handleBlur, errors, touched } =
     useFormik({
       initialValues: { name: "", email: "", password: "" },
@@ -44,18 +43,28 @@ export function SignUp() {
   const Post = async (values) => {
     try {
       console.log(values);
-      await fetch("https://forgot-password-by-vrushabh.herokuapp.com/signup", {
-        method: "POST",
-        body: JSON.stringify({
-          name: values.name,
-          email: values.email,
-          password: values.password,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }).then(history.push("/login"))
-      .then(alert("An Email sent to your Account please verify"))
+      const Response = await fetch(
+        "https://forgot-password-by-vrushabh.herokuapp.com/signup",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            name: values.name,
+            email: values.email,
+            password: values.password,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      ).then((response) => response.json());
+      // .then(history.push("/login"))
+      // .then(alert("An Email sent to your Account please verify"))
+      if (Response.success === true) {
+        history.push("/login");
+        alert(Response.message);
+      } else {
+        alert(Response.message);
+      }
     } catch (error) {
       console.log(error);
     }
