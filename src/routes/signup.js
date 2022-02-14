@@ -42,7 +42,7 @@ export function SignUp() {
     });
   const Post = async (values) => {
     try {
-      console.log(values);
+      // console.log(values);
       const Response = await fetch(
         "https://forgot-password-by-vrushabh.herokuapp.com/signup",
         {
