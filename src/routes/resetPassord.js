@@ -23,9 +23,9 @@ export const formValidationSchema = yup.object({
 export function Reset() {
   const history = useHistory();
   // const id = localStorage.getItem("id");
-  const { token } = useParams();
+  const { id } = useParams();
 
-  if (!token) {
+  if (!id) {
     history.push("/login");
   }
 
