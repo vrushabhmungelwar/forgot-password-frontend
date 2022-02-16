@@ -48,8 +48,8 @@ export function Forgot() {
     });
     const json = await response.json();
     if (json.success) {
-      localStorage.setItem("token", json.token);
-      localStorage.setItem("id", json.id);
+      // localStorage.setItem("token", json.token);
+      // localStorage.setItem("id", json.id);
       history.push("/login");
       alert("An email sent to your account please verify")
     } else {

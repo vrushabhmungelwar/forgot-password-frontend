@@ -24,6 +24,10 @@ export function Reset() {
   const history = useHistory();
   // const id = localStorage.getItem("id");
   const { id } = useParams();
+  const { token } = useParams();
+
+  localStorage.setItem("id", id);
+  localStorage.setItem("token", token);
 
   if (!id) {
     history.push("/login");
