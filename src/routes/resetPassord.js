@@ -9,6 +9,7 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import { useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 // import jwt from 'jsonwebtoken';
 
@@ -21,8 +22,10 @@ export const formValidationSchema = yup.object({
 
 export function Reset() {
   const history = useHistory();
-  const id = localStorage.getItem("id");
-  if (!id) {
+  // const id = localStorage.getItem("id");
+  const { token } = useParams();
+
+  if (!token) {
     history.push("/login");
   }
 
