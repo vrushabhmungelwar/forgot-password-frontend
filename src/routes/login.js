@@ -8,8 +8,10 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import { Link } from "@mui/material";
+import { IconButton, Link } from "@mui/material";
 import { useHistory } from "react-router-dom";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import copy from "copy-to-clipboard";
 
 export const formValidationSchema = yup.object({
   email: yup
@@ -61,13 +63,36 @@ export function Login() {
       alert(json.message);
     }
   };
-
+  const copyToClipboard = async (text) => {
+    copy(text);
+  };
   return (
     <div>
-      <div className="demo">
+         <div className="demo">
         <h3>Demo Credentials</h3>
-        <h5>Email: vrushabhmungelwar10@gmail.com</h5>
-        <h5>Password: vrushabh</h5>
+        <h5>
+          Email: vrushabhmungelwar221@gmail.com
+          <IconButton
+            onClick={() => {
+              const text = "vrushabhmungelwar221@gmail.com";
+              copyToClipboard(text);
+            }}
+          >
+            <ContentCopyIcon fontSize="small" />
+          </IconButton>
+        </h5>
+
+        <h5>
+          Password: vrushabh
+          <IconButton
+            onClick={() => {
+              const text = "vrushabh";
+              copyToClipboard(text);
+            }}
+          >
+            <ContentCopyIcon fontSize="small" />
+          </IconButton>
+        </h5>
       </div>
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">

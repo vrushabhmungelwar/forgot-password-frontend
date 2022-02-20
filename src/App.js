@@ -5,6 +5,7 @@ import { Success } from "./routes/success";
 import { Login } from "./routes/login";
 import { Forgot } from "./routes/forgotPassword";
 import { Reset } from "./routes/resetPassord";
+import ProtectedRoute from "./routes/ProtectedRoute";
 function App() {
   return (
     <div className="App">
@@ -20,9 +21,7 @@ function App() {
         <Route path="/signUp">
           <SignUp />
         </Route>
-        <Route path="/success">
-          <Success />
-        </Route>
+        <ProtectedRoute path="/success" Proute={Success} />
         <Route path="/forgotpassword">
           <Forgot />
         </Route>
